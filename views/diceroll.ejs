@@ -1,0 +1,16 @@
+<form action="/diceRoll" method="GET">
+  <input type="text" name="diceNumber" placeholder="number of dice being used" />
+  <button type="submit">ROLL</button>
+</form>
+
+<BR>
+<BR>
+<BR>
+<h1>Dice Side : How Many Times It Was Rolled </h1>
+<ul>
+  <% Object.entries(resultObj).forEach(([key, value]) => { %>
+  <li><strong><%= key %>:</strong> <%= value %></li>
+  <% }); %>
+</ul>
+<BR>
+<BR><a href="/diceroll">ROLL AGAIN</a>

@@ -31,10 +31,20 @@ function diceRolling(stringOfDice) {
 
     return countNumOccurences(diceRolls);
   }
-  // must fix this
-  if (!Number.isInteger(numberOfDice)) {
-    return "please enter a valid whole number";
-  }
 }
 
-module.exports = { diceRolling };
+//
+/**
+ * increases or decreases the turn counter by using the response(s) from the html form and action it within a case-switch statement
+ * @param {Object} nextTurn - this will increase the turn counter
+ * @param {Object} prevTurn - this will decrease the turn counter
+ * @param {number} currTurnNum - this will take the stored counter from the SQL table and we'll update it to the number that's returned
+ * @return {number} turnCount will be returned as it will represent either an increase or decrease in the turn count
+ */
+function turnCounter(nextTurn, prevTurn, currTurnNum) {
+  let newTurnNum;
+
+  return newTurnNum;
+}
+
+module.exports = { diceRolling, turnCounter };

@@ -4,16 +4,16 @@ const { diceRolling, turnCounter } = require("./functions");
 
 ////////////////////////////
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  await query("DELETE FROM points;");
+  await query("DELETE FROM turn_number;");
+
   res.render("index");
 });
 
 ////////////////////////////
 
 app.post("/tabledata", async (req, res) => {
-  // const value1 = [`%${player1}%`];
-  // const value2 = [`%${player2}%`];
-
   const player1 = req.body.player1;
   const player2 = req.body.player2;
 

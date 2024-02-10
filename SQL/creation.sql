@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS points;
+DROP TABLE IF EXISTS turn_number;
 
 -- use the html form to store the names in the table to use!
 -- use an insert query

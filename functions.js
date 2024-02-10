@@ -28,8 +28,12 @@ function diceRolling(stringOfDice) {
       diceRolls.push(sixSided[index]);
       count++;
     }
-
     return countNumOccurences(diceRolls);
+  } else {
+    return {
+      instructions:
+        "please input the amount of dice you will use at the top of the page",
+    };
   }
 }
 

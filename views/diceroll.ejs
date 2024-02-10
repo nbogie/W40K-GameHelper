@@ -6,11 +6,11 @@
 <BR>
 <BR>
 <BR>
-<h1>Dice Side : How Many Times It Was Rolled </h1>
-<ul>
-  <% Object.entries(resultObj).forEach(([key, value]) => { %>
-  <li><strong><%= key %>:</strong> <%= value %></li>
-  <% }); %>
-</ul>
+<h4>Dice Side : How Many Times It Was Rolled </h4>
+
+<% Object.entries(resultObj).forEach(([key, value]) => { %>
+<br><strong><%= key %>:</strong> <%= value %>
+<% }); %>
+
 <BR>
 <BR><a href="/diceroll">ROLL AGAIN</a>

@@ -1,13 +1,6 @@
-const express = require("express");
+const { app } = require("./support/setupExpress");
 const { query } = require("./support/db");
 const { diceRolling, turnCounter } = require("./functions");
-
-const app = express();
-
-app.listen(3000);
-
-//searches for files with ejs in it in 'views' folder
-app.set("view engine", "ejs");
 
 ////////////////////////////
 
@@ -15,30 +8,29 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/points", async (req, res) => {
+////////////////////////////
+
+app.post("/tabledata", async (req, res) => {
+  // const value1 = [`%${player1}%`];
+  // const value2 = [`%${player2}%`];
+
   const player1 = req.body.player1;
   const player2 = req.body.player2;
 
-  const value1 = [`%${player1}%`];
-  const value2 = [`%${player2}%`];
-
   await query(
-    "insert into points ( player, primaryPoints,secondaryPoints, commandPoints) values (($1)",
-    value1,
-    "0, 0, 0), (($1)",
-    value2,
-    "0, 0, 0); "
+    "INSERT INTO points (player, primaryPoints, secondaryPoints, commandPoints) VALUES ($1, 0, 0, 0), ($2, 0, 0, 0)",
+    [player1, player2]
   ); // inserts into points table
 
   await query("insert into turn_number (turnNum) values (0);"); // inserts into turn table
 
-  res.render("points");
+  res.redirect("points");
 });
 
 ////////////////////////////
 
 app.get("/points", (req, res) => {
-  turnCounter(nextTurn, prevTurn, currTurnNum); //STILL NEED TO CREATE THIS
+  // turnCounter(nextTurn, prevTurn, currTurnNum); //STILL NEED TO CREATE THIS
 
   res.render("points");
 });

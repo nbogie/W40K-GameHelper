@@ -29,10 +29,29 @@ app.post("/tabledata", async (req, res) => {
 
 ////////////////////////////
 
-app.get("/points", (req, res) => {
-  // turnCounter(nextTurn, prevTurn, currTurnNum); //STILL NEED TO CREATE THIS
+// MUST FIGURE OUT WHAT REQ.QUERY IS AND WHY IT COMES UP AS BLAHHH
 
-  res.render("points");
+app.get("/points", async (req, res) => {
+  // displays current turn number
+  const dbResult = await query("SELECT turnNum from turn_number");
+  const dbArray = dbResult.rows;
+  const currTurnNum = dbArray[0].turnnum;
+
+  // takes query from page and determines if increase or decrease
+  let turnAdjustment = req.query;
+
+  // increases or decreases the turn number
+  let newTurnNum = turnCounter(turnAdjustment, currTurnNum);
+
+  console.log("OUTCOMEEEEE: ", turnAdjustment);
+
+  // inserts into turn table
+  await query("UPDATE turn_number SET turnNum = $1 WHERE turnNum = $2", [
+    newTurnNum,
+    currTurnNum,
+  ]);
+
+  res.render("points", { currTurnNum });
 });
 
 ////////////////////////////

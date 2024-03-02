@@ -45,8 +45,20 @@ function diceRolling(stringOfDice) {
  * @param {number} currTurnNum - this will take the stored counter from the SQL table and we'll update it to the number that's returned
  * @return {number} turnCount will be returned as it will represent either an increase or decrease in the turn count
  */
-function turnCounter(nextTurn, prevTurn, currTurnNum) {
+function turnCounter(turnAdjustment, currTurnNum) {
   let newTurnNum;
+
+  if (turnAdjustment == "increase" && currTurnNum >= 0) {
+    newTurnNum = currTurnNum + 1;
+  }
+
+  if (turnAdjustment == "decrease" && currTurnNum >= 0) {
+    newTurnNum = currTurnNum - 1;
+  }
+
+  if (currTurnNum <= 0) {
+    return (currTurnNum = 0);
+  }
 
   return newTurnNum;
 }

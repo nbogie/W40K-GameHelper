@@ -7,13 +7,25 @@
 </nav>
 
 <head>
-  <title>Increment Decrement Counter</title>
+  <title>Main Page</title>
   <!-- <link rel="stylesheet" href="styles.css" /> -->
   <script src="app.js" defer></script>
 </head>
 
 <body>
+  <!-- turn counter -->
   <div class="turn counter">
+    <form action="/points" method="GET">
+      <input type="hidden" name="decrease" placeholder="decrease turn" />
+      <button type="submit">decrease</button>
+    </form>
+    <p>turn number: <%= currTurnNum %></p>
+    <form action="/points" method="GET">
+      <input type="hidden" name="increase" placeholder="increase turn" />
+      <button type="submit">increase</button>
+    </form>
+
+    <!-- points display -->
     <div id="points display">
 
     </div>
